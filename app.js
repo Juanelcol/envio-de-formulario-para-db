@@ -3,6 +3,7 @@ const app = express();
 const db = require('./models/db')
 const bodyParser = require('body-parser')
 const Produtos = require('./models/Produtos')
+const Usuarios = require('./models/Usuarios')
 
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
@@ -14,8 +15,17 @@ app.get('/cad_usuario', (req, res)=>{
 })
 
 app.post('/cadastrar_usuarios', (req, res)=>{
-    console.log(req.body)
-    res.send(req.body.nome + req.body.email)
+    //console.log(req.body)
+    //res.send(req.body.nome + req.body.email)
+    Usuarios.create({
+        nome_usuario: req.body.nome,
+        email_usuario: req.body.email
+        
+    }).then(function(){
+        res.send("Usuário cadastrado com sucesso")
+    }).catch(function(err){
+        res.send("Usuário não cadastrado / " + err )
+    })
 })
 
 app.get('/cad_produto', (req, res)=>{
@@ -30,9 +40,9 @@ app.post('/cadastrar_produtos', (req, res)=>{
        descricao: req.body.desc,
        preco: req.body.preco
    }).then(function(){
-       res.send("Cadastrado com sucesso")
+       res.send("Produto cadastrado com sucesso")
    }).catch(function(err){
-       res.send("Não cadsatrado / " + err )
+       res.send("Produto não cadastrado / " + err )
    })
 })
 
