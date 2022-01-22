@@ -15,8 +15,7 @@ app.get('/cad_usuario', (req, res)=>{
 })
 
 app.post('/cadastrar_usuarios', (req, res)=>{
-    //console.log(req.body)
-    //res.send(req.body.nome + req.body.email)
+    
     Usuarios.create({
         nome_usuario: req.body.nome,
         email_usuario: req.body.email
@@ -33,8 +32,7 @@ app.get('/cad_produto', (req, res)=>{
 })
 
 app.post('/cadastrar_produtos', (req, res)=>{
-     //console.log(req.body)
-   // res.send(req.body.prod + req.body.desc + req.body.preco)
+     
    Produtos.create({
        nome_prod: req.body.prod,
        descricao: req.body.desc,
